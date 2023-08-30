@@ -1,41 +1,68 @@
-
 import React, { useState, useEffect } from "react";
 import './../styles/App.css';
 
 const App = () => {
-    const cityList = [{ name: 'Goa', country: 'India' },
-    { name: 'Amsterdam', country: 'Netherlands' },
-    { name: 'New York', country: 'USA' },
-    { name: 'Darjeeling', country: 'India' },
-    { name: 'Tokyo', country: 'Japan' },
-    { name: 'Lonavala', country: 'India' },
-    { name: 'Brandenburg Gate', country: 'Germany' },
-    { name: 'Reichstag Building', country: 'Germany' },
-    { name: 'Museum Island', country: 'Germany' },
-    { name: 'Munnar', country: 'India' },
-    { name: 'Leh Ladakh', country: 'India' },
-    { name: 'Goa', country: 'India' },
-    { name: 'Agra', country: 'India' },
-    { name: 'Dalhousie', country: 'India' },
-    { name: 'Coorg', country: 'India' },
-    { name: 'Rome', country: 'Italy' },
-    { name: 'Milan', country: 'Italy' },
-    { name: 'Venice', country: 'Italy' },
-    { name: 'Varanasai', country: 'India' },
-    { name: 'Jaipur', country: 'India' },
-    { name: 'The Hofburg', country: 'Austria' },
-    { name: 'Belvedere Palace', country: 'Austria' },
-    { name: 'St. Stephen Cathedral', country: 'Austria' },
-    { name: 'Kahna National Park', country: 'India' },
-    { name: 'Amritsar', country: 'India' },
-    { name: 'Mussoorie', country: 'India' },
-    { name: 'Mount Abu', country: 'India' },
-    { name: 'Tirupati', country: 'India' },
-    ]
-    
+  const cityList = [{ name: 'Goa', country: 'India' },
+  { name: 'Amsterdam', country: 'Netherlands' },
+  { name: 'New York', country: 'USA' },
+  { name: 'Darjeeling', country: 'India' },
+  { name: 'Tokyo', country: 'Japan' },
+  { name: 'Lonavala', country: 'India' },
+  { name: 'Brandenburg Gate', country: 'Germany' },
+  { name: 'Reichstag Building', country: 'Germany' },
+  { name: 'Museum Island', country: 'Germany' },
+  { name: 'Munnar', country: 'India' },
+  { name: 'Leh Ladakh', country: 'India' },
+  { name: 'Goa', country: 'India' },
+  { name: 'Agra', country: 'India' },
+  { name: 'Dalhousie', country: 'India' },
+  { name: 'Coorg', country: 'India' },
+  { name: 'Rome', country: 'Italy' },
+  { name: 'Milan', country: 'Italy' },
+  { name: 'Venice', country: 'Italy' },
+  { name: 'Varanasai', country: 'India' },
+  { name: 'Jaipur', country: 'India' },
+  { name: 'The Hofburg', country: 'Austria' },
+  { name: 'Belvedere Palace', country: 'Austria' },
+  { name: 'St. Stephen Cathedral', country: 'Austria' },
+  { name: 'Kahna National Park', country: 'India' },
+  { name: 'Amritsar', country: 'India' },
+  { name: 'Mussoorie', country: 'India' },
+  { name: 'Mount Abu', country: 'India' },
+  { name: 'Tirupati', country: 'India' },
+  ]
+
+  let indian = cityList.filter((city, indx)=>{
+    if(city.country==='India'){
+      return city;
+    }
+  })
+
+  for(let i = 0; i<indian.length; i++){
+    for(let j = 0; j<cityList.length; j++){
+      if(indian[i].name===cityList[j].name){
+        cityList.splice(j, 1)
+      }
+    }
+  }
+
+  cityList.unshift(...indian)
+
+  console.log(indian);
+  console.log("all", cityList);
+
   return (
     <div id="main">
-               {/* Do not remove the main div */}
+      {/* Do not remove the main div */}
+      <ol>
+        {
+          cityList.map((city, indx)=>(
+            <li key={`location${indx+1}`}>
+              {city.name}
+            </li>
+          ))
+        }
+      </ol>
     </div>
   )
 }
